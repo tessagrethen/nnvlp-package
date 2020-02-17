@@ -1,14 +1,13 @@
 import os
 import subprocess, shlex
-import cPickle as pickle
+import pickle
 import numpy as np
-from alphabet import Alphabet
-import network
+from .archs.alphabet import Alphabet
+from .archs import network, utils
 import codecs
 import theano
 import lasagne
-import utils
-from pyvi.pyvi import ViTokenizer
+from pyvi import ViTokenizer
 from nltk.tokenize import sent_tokenize
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -137,7 +136,7 @@ def token_data(raw_texts, max_sent_length):
         token_text = ViTokenizer.tokenize(text).split()
         len_text = len(token_text)
         len_texts.append(len_text)
-        output_texts += [token_text[i:i + max_sent_length] for i in xrange(0, len(token_text), max_sent_length)]
+        output_texts += [token_text[i:i + max_sent_length] for i in range(0, len(token_text), max_sent_length)]
     return output_texts, len_texts
 
 
